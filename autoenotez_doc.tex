@@ -1,5 +1,5 @@
 %% autoenotez_doc.tex
-%% Copyright 2023 Elkeid Me
+%% Copyright 2023-2024 Elkeid Me
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either version 1.3
@@ -25,90 +25,67 @@
 \date{\today v\autoenotezversion}
 
 \begin{document}
-    \maketitle
-
-    \section{简介}
-
-    \textsf{autoenotez} 旨在分离尾注/脚注的标记与内容。类似 \textsf{sepfootnotes} 包的功能。
-
-    \textsf{autoenotez} 包是在排版某本书时编写的。
-
-    \section{示例}
-
-    首先，你需要在一个新的章/节后使用 \verb|\NewEndnotes|，以设置 \textsf{autoenotez} 内部的一些寄存器；
-
-    \begin{verbatim}
+\maketitle
+\section{简介}
+\textsf{autoenotez} 旨在分离尾注/脚注的标记与内容。类似 \textsf{sepfootnotes} 包的功能。
+\textsf{autoenotez} 包是在排版某本书时编写的。
+\section{示例}
+首先，你需要在一个新的章/节后使用 \verb|\NewEndnotes|，以设置 \textsf{autoenotez} 内部的一些寄存器；
+\begin{verbatim}
 \section{一一四五一四章}
 \NewEndnotes
-    \end{verbatim}
-
-    然后，在 \verb|\NewEndnotes| 后，使用 \verb|\EndnoteContent| 按顺序给出本章/节用到的尾注/脚注内容：
-
-    \begin{verbatim}
+\end{verbatim}
+然后，在 \verb|\NewEndnotes| 后，使用 \verb|\EndnoteContent| 按顺序给出本章/节用到的尾注/脚注内容：
+\begin{verbatim}
 \section{一一四五一四章}
 \NewEndnotes
 \EndnoteContent{尾注 1}
 \EndnoteContent{尾注 2}
-    \end{verbatim}
-
-    接下来，在正文中，以 \verb|\Endnote| 标记出尾注的位置
-
-    \begin{verbatim}
+\end{verbatim}
+接下来，在正文中，以 \verb|\Endnote| 标记出尾注的位置
+\begin{verbatim}
 \section{一一四五一四章}
 \NewEndnotes
 \EndnoteContent{尾注 1}
 \EndnoteContent{尾注 2}
 114514\Endnote 1919810\Endnote
-    \end{verbatim}
-
-    最后，使用 \verb|\printendnotes| 打印尾注。你可能需要多次编译以达到效果。完整的样例如下：
-
-    \begin{verbatim}
+\end{verbatim}
+最后，使用 \verb|\printendnotes| 打印尾注。你可能需要多次编译以达到效果。完整的样例如下：
+\begin{verbatim}
 \documentclass{ctexart}
 \begin{document}
-    \section{一一四五一四章}
-    \NewEndnotes
-    \EndnoteContent{尾注 1}
-    \EndnoteContent{尾注 2}
-    114514\Endnote 1919810\Endnote
-    \printendnotes
-\end{document}
-    \end{verbatim}
-
-    为了达到脚注标记与内容的真正分离，所有的 \verb|\EndnoteContent| 也可以挪到一个单独的文件中，并以 \verb|\input| 引用：
-
-    \verb|1.tex|
-    \begin{verbatim}
-\documentclass{ctexart}
-\begin{document}
-    \section{一一四五一四章}
-    \NewEndnotes
-    \input{2.tex}
-    114514\Endnote 1919810\Endnote
-    \printendnotes
-\end{document}
-    \end{verbatim}
-
-    \verb|2.tex|
-    \begin{verbatim}
+\section{一一四五一四章}
+\NewEndnotes
 \EndnoteContent{尾注 1}
 \EndnoteContent{尾注 2}
-    \end{verbatim}
-
-    而 \verb|\NewEndnotes| 提供了可选参数，即 \verb|\NewEndnotes \input{2.tex}| 可以直接写成 \verb|\NewEndnotes[2.tex]|。
-
-    实际的结果如下页：
-    \newpage
-
-    \section{一一四五一四章}
-
-    \NewEndnotes[2.tex]
-
-    114514\Endnote 1919810\Endnote
-
-    \printendnotes
-
-    \verb|\NewFootnotes|、\verb|\Footnote| 与 \verb|\FootnoteContent| 的用法类似，只不过是负责尾注的。\textbf{不需要} \verb|\printendnotes|
-
-    备注：尾注的标题是 Notes 怎么办？其实这是 \textsf{enotez} 包的设定，可以通过 \verb|\setenotez| 修改。阅读 \verb|enotez| 文档了解详细信息。
+114514\Endnote 1919810\Endnote
+\printendnotes
+\end{document}
+\end{verbatim}
+为了达到脚注标记与内容的真正分离，所有的 \verb|\EndnoteContent| 也可以挪到一个单独的文件中，并以 \verb|\input| 引用：
+\verb|1.tex|
+\begin{verbatim}
+\documentclass{ctexart}
+\begin{document}
+\section{一一四五一四章}
+\NewEndnotes
+\input{2.tex}
+114514\Endnote 1919810\Endnote
+\printendnotes
+\end{document}
+\end{verbatim}
+\verb|2.tex|
+\begin{verbatim}
+\EndnoteContent{尾注 1}
+\EndnoteContent{尾注 2}
+\end{verbatim}
+而 \verb|\NewEndnotes| 提供了可选参数，即 \verb|\NewEndnotes \input{2.tex}| 可以直接写成 \verb|\NewEndnotes[2.tex]|。
+实际的结果如下页：
+\newpage
+\section{一一四五一四章}
+\NewEndnotes[2.tex]
+114514\Endnote 1919810\Endnote
+\printendnotes
+\verb|\NewFootnotes|、\verb|\Footnote| 与 \verb|\FootnoteContent| 的用法类似，只不过是负责尾注的。\textbf{不需要} \verb|\printendnotes|
+备注：尾注的标题是 Notes 怎么办？其实这是 \textsf{enotez} 包的设定，可以通过 \verb|\setenotez| 修改。阅读 \verb|enotez| 文档了解详细信息。
 \end{document}

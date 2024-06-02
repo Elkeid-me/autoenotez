@@ -1,5 +1,5 @@
 %% autoenotez.sty
-%% Copyright 2023 Elkeid Me
+%% Copyright 2023-2024 Elkeid Me
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either version 1.3
@@ -19,8 +19,8 @@
 \NeedsTeXFormat{LaTeX2e}
 \RequirePackage{enotez}
 \RequirePackage{expl3}
-\newcommand{\autoenotezversion}{1.0}
-\ProvidesExplPackage{autoenotez}{2023/9/13}{\autoenotezversion}{Use enotez package automatically.}
+\newcommand{\autoenotezversion}{1.1}
+\ProvidesExplPackage{autoenotez}{2024/06/02}{\autoenotezversion}{Use enotez package automatically.}
 \int_zero_new:N \g_auto_enotez_endnote_sep
 \int_zero_new:N \g_auto_enotez_endnote_id
 \int_zero_new:N \g_auto_enotez_endnote_content_id
@@ -38,14 +38,14 @@
     \ProvideDocumentCommand { \Endnote } { }
       {
         \int_gincr:N \g_auto_enotez_endnote_id
-        \exp_args:Ne \endnote { \str_use:c { endnote_ \int_to_roman:n { \int_use:N \g_auto_enotez_endnote_id } _in_sep_ \int_to_roman:n { \g_auto_enotez_endnote_sep } } }
+        \exp_args:Ne \endnote { \str_use:c { endnote_ \int_to_roman:n { \g_auto_enotez_endnote_id } _in_sep_ \int_to_roman:n { \g_auto_enotez_endnote_sep } } }
       }
 
     \ProvideDocumentCommand { \EndnoteContent } { m }
       {
         \int_gincr:N \g_auto_enotez_endnote_content_id
-        \str_new:c { endnote_ \int_to_roman:n { \int_use:N \g_auto_enotez_endnote_content_id } _in_sep_ \int_to_roman:n { \g_auto_enotez_endnote_sep } }
-        \str_set:cn { endnote_ \int_to_roman:n { \int_use:N \g_auto_enotez_endnote_content_id } _in_sep_ \int_to_roman:n { \g_auto_enotez_endnote_sep } } {##1}
+        \str_new:c { endnote_ \int_to_roman:n { \g_auto_enotez_endnote_content_id } _in_sep_ \int_to_roman:n { \g_auto_enotez_endnote_sep } }
+        \str_set:cn { endnote_ \int_to_roman:n { \g_auto_enotez_endnote_content_id } _in_sep_ \int_to_roman:n { \g_auto_enotez_endnote_sep } } {##1}
       }
     \IfNoValueF {#1} { \input{#1} }
   }
@@ -59,14 +59,14 @@
     \ProvideDocumentCommand { \Footnote } { }
       {
         \int_gincr:N \g_auto_enotez_footnote_id
-        \exp_args:Ne \footnote { \str_use:c { footnote_ \int_to_roman:n { \int_use:N \g_auto_enotez_footnote_id } _in_sep_ \int_to_roman:n { \g_auto_enotez_footnote_sep } } }
+        \exp_args:Ne \footnote { \str_use:c { footnote_ \int_to_roman:n { \g_auto_enotez_footnote_id } _in_sep_ \int_to_roman:n { \g_auto_enotez_footnote_sep } } }
       }
 
     \ProvideDocumentCommand { \FootnoteContent } { m }
       {
         \int_gincr:N \g_auto_enotez_footnote_content_id
-        \str_new:c { footnote_ \int_to_roman:n { \int_use:N \g_auto_enotez_footnote_content_id } _in_sep_ \int_to_roman:n { \g_auto_enotez_footnote_sep } }
-        \str_set:cn { footnote_ \int_to_roman:n { \int_use:N \g_auto_enotez_footnote_content_id } _in_sep_ \int_to_roman:n { \g_auto_enotez_footnote_sep } } {##1}
+        \str_new:c { footnote_ \int_to_roman:n { \g_auto_enotez_footnote_content_id } _in_sep_ \int_to_roman:n { \g_auto_enotez_footnote_sep } }
+        \str_set:cn { footnote_ \int_to_roman:n { \g_auto_enotez_footnote_content_id } _in_sep_ \int_to_roman:n { \g_auto_enotez_footnote_sep } } {##1}
       }
     \IfNoValueF {#1} { \input{#1} }
   }
